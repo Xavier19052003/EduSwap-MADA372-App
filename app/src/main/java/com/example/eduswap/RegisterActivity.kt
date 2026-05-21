@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -92,6 +94,12 @@ class RegisterActivity : AppCompatActivity() {
                     this,
                     HomeActivity::class.java
                 )
+
+            Toast.makeText(
+                this,
+                "Registration Successful!",
+                Toast.LENGTH_SHORT
+            ).show()
 
             startActivity(intent)
 
