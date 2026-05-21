@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -157,6 +159,12 @@ class ProfileActivity : AppCompatActivity() {
                     this,
                     RegisterActivity::class.java
                 )
+
+            Toast.makeText(
+                this,
+                "Logout Successful!",
+                Toast.LENGTH_SHORT
+            ).show()
 
             startActivity(intent)
 
