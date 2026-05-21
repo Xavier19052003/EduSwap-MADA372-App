@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+
 
 class SellActivity : AppCompatActivity() {
 
@@ -225,6 +227,12 @@ class SellActivity : AppCompatActivity() {
                     "Used"
 
             }
+
+            Toast.makeText(
+                this,
+                "Book Listed Successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
 
             // OPEN HOME SCREEN
 
