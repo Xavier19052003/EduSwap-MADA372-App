@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern_bg"
+    android:orientation="vertical">
+
+    <!-- SCROLLABLE CONTENT -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- LOGO -->
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/eduswap_logo_text" />
+
+            <!-- SEARCH -->
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="16dp"
+                android:hint="Author, ISBN, Name"
+                android:inputType="text" />
+
+            <!-- TITLE -->
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Campus Marketplace"
+                android:textColor="#0D2E73"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- USER LISTING CARD -->
+
+            <LinearLayout
+                android:id="@+id/userMarketplaceCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#F7D73B"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <!-- BOOK IMAGE -->
+
+                <ImageView
+                    android:id="@+id/imgUserBook"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/book_placeholder" />
+
+                <!-- BOOK INFO -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!-- BOOK TITLE -->
+
+                    <TextView
+                        android:id="@+id/tvUserTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Book Title"
+                        android:textColor="#0D2E73"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <!-- PRICE -->
+
+                    <TextView
+                        android:id="@+id/tvUserPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="R0"
+                        android:textColor="#D60000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <!-- SELLER -->
+
+                    <TextView
+                        android:id="@+id/tvUserSeller"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seller"
+                        android:textSize="20sp" />
+
+                    <!-- UNIVERSITY -->
+
+                    <TextView
+                        android:id="@+id/tvUserUniversity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="University"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- PLACEHOLDER MARKETPLACE CARD -->
+
+            <LinearLayout
+                android:id="@+id/marketplaceCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#F7D73B"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <!-- BOOK IMAGE -->
+
+                <ImageView
+                    android:id="@+id/imgMarketplaceBook"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/book_placeholder" />
+
+                <!-- BOOK INFO -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!-- BOOK TITLE -->
+
+                    <TextView
+                        android:id="@+id/tvMarketplaceTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lord of the Rings"
+                        android:textColor="#0D2E73"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <!-- PRICE -->
+
+                    <TextView
+                        android:id="@+id/tvMarketplacePrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="R200"
+                        android:textColor="#D60000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <!-- SELLER -->
+
+                    <TextView
+                        android:id="@+id/tvMarketplaceSeller"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seller: Durell"
+                        android:textSize="20sp" />
+
+                    <!-- UNIVERSITY -->
+
+                    <TextView
+                        android:id="@+id/tvMarketplaceUniversity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="University: STADIO"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- NAVBAR -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <!-- HOME -->
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#D62828"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                app:srcCompat="@drawable/ic_home"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- SELL -->
+
+        <LinearLayout
+            android:id="@+id/navSell"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#355070"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                app:srcCompat="@drawable/ic_sell" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sell"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- ACCOUNT -->
+
+        <LinearLayout
+            android:id="@+id/navAccount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#F4D35E"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                app:srcCompat="@drawable/ic_account" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- CHAT -->
+
+        <LinearLayout
+            android:id="@+id/navChat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#588157"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                app:srcCompat="@drawable/ic_chat" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chat"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
