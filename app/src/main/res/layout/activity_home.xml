@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Home Screen Layout
+
+    Displays:
+    - Search bar
+    - Marketplace listings
+    - User uploaded listings
+    - Navigation bar
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,7 +17,7 @@
     android:background="@drawable/pattern_bg"
     android:orientation="vertical">
 
-    <!-- SCROLLABLE CONTENT -->
+    <!-- MAIN SCROLLABLE CONTENT -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +31,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- LOGO -->
+            <!-- APP LOGO -->
 
             <ImageView
                 android:layout_width="300dp"
@@ -30,7 +40,7 @@
                 android:layout_marginTop="20dp"
                 android:src="@drawable/eduswap_logo_text" />
 
-            <!-- SEARCH -->
+            <!-- SEARCH BAR -->
 
             <EditText
                 android:id="@+id/etSearch"
@@ -40,7 +50,7 @@
                 android:hint="Author, ISBN, Name"
                 android:inputType="text" />
 
-            <!-- TITLE -->
+            <!-- SCREEN TITLE -->
 
             <TextView
                 android:id="@+id/textView"
@@ -52,7 +62,7 @@
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <!-- USER LISTING CARD -->
+            <!-- USER UPLOADED LISTING -->
 
             <LinearLayout
                 android:id="@+id/userMarketplaceCard"
@@ -74,7 +84,7 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/book_placeholder" />
 
-                <!-- BOOK INFO -->
+                <!-- BOOK INFORMATION -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -94,7 +104,7 @@
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
-                    <!-- PRICE -->
+                    <!-- BOOK PRICE -->
 
                     <TextView
                         android:id="@+id/tvUserPrice"
@@ -127,7 +137,7 @@
 
             </LinearLayout>
 
-            <!-- PLACEHOLDER MARKETPLACE CARD -->
+            <!-- MOCK PLACEHOLDER LISTING -->
 
             <LinearLayout
                 android:id="@+id/marketplaceCard"
@@ -148,7 +158,7 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/book_placeholder" />
 
-                <!-- BOOK INFO -->
+                <!-- BOOK INFORMATION -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -168,7 +178,7 @@
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
-                    <!-- PRICE -->
+                    <!-- BOOK PRICE -->
 
                     <TextView
                         android:id="@+id/tvMarketplacePrice"

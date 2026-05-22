@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Sell Screen Layout
+
+    Allows users to:
+    - Upload textbook images
+    - Enter textbook information
+    - Select book condition
+    - Post a listing
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,128 +17,149 @@
     android:orientation="vertical"
     android:background="@drawable/pattern_bg">
 
+    <!-- MAIN SCROLLABLE CONTENT -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- LOGO -->
-
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/eduswap_logo_text" />
-
-        <!-- TITLE -->
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sell Your Textbooks Here!"
-            android:textColor="#0D2E73"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- APP LOGO -->
 
             <ImageView
-                android:id="@+id/imgBook1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="8dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/book_placeholder" />
+                android:layout_width="300dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/eduswap_logo_text" />
 
-            <ImageView
-                android:id="@+id/imgBook2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="8dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/book_placeholder" />
+            <!-- SCREEN TITLE -->
 
-            <ImageView
-                android:id="@+id/imgBook3"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="8dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/book_placeholder" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sell Your Textbooks Here!"
+                android:textColor="#0D2E73"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- IMAGE UPLOAD SECTION -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- FIRST IMAGE -->
+
+                <ImageView
+                    android:id="@+id/imgBook1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/book_placeholder" />
+
+                <!-- SECOND IMAGE -->
+
+                <ImageView
+                    android:id="@+id/imgBook2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/book_placeholder" />
+
+                <!-- THIRD IMAGE -->
+
+                <ImageView
+                    android:id="@+id/imgBook3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/book_placeholder" />
+
+            </LinearLayout>
+
+            <!-- TEXTBOOK INFORMATION TITLE -->
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Enter Textbook Information:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- BOOK TITLE FIELD -->
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Textbook Name:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etBookTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter textbook name"
+                android:inputType="text" />
+
+            <!-- BOOK PRICE FIELD -->
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price:"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etBookPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Price"
+                android:inputType="number" />
+
+            <!-- BOOK CONDITION -->
+
+            <CheckBox
+                android:id="@+id/cbNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Brand New" />
+
+            <CheckBox
+                android:id="@+id/cbUsed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Used" />
+
+            <!-- LIST ITEM BUTTON -->
+
+            <Button
+                android:id="@+id/btnListItem"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:backgroundTint="#1E8E3E"
+                android:text="List Item" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Enter Textbook Information:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Textbook Name:"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/etBookTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter textbook name"
-            android:inputType="text" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Price:"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/etBookPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter Price"
-            android:inputType="number" />
-
-        <CheckBox
-            android:id="@+id/cbNew"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Brand New" />
-
-        <CheckBox
-            android:id="@+id/cbUsed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Used" />
-
-        <Button
-            android:id="@+id/btnListItem"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:backgroundTint="#1E8E3E"
-            android:text="List Item" />
-    </LinearLayout>
 
     </ScrollView>
 

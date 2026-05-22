@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Chat Screen Layout
+
+    Displays:
+    - Seller information
+    - Chat messages
+    - Message input area
+    - Navigation bar
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -20,7 +30,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- LOGO -->
+            <!-- APP LOGO -->
 
             <ImageView
                 android:layout_width="300dp"
@@ -40,11 +50,15 @@
                 android:orientation="horizontal"
                 android:padding="12dp">
 
+                <!-- SELLER IMAGE -->
+
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/book_placeholder" />
+
+                <!-- SELLER INFORMATION -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -71,7 +85,7 @@
 
             </LinearLayout>
 
-            <!-- DYNAMIC CHAT CONTAINER -->
+            <!-- DYNAMIC CHAT MESSAGES -->
 
             <LinearLayout
                 android:id="@+id/chatContainer"
@@ -84,7 +98,7 @@
 
     </ScrollView>
 
-    <!-- MESSAGE INPUT -->
+    <!-- MESSAGE INPUT AREA -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,6 +108,8 @@
         android:orientation="horizontal"
         android:padding="8dp">
 
+        <!-- MESSAGE TEXTBOX -->
+
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="0dp"
@@ -101,6 +117,8 @@
             android:layout_weight="1"
             android:backgroundTint="#0D2E73"
             android:hint="Type a message..." />
+
+        <!-- SEND BUTTON -->
 
         <Button
             android:id="@+id/btnSend"

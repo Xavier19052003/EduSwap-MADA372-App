@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Registration Screen Layout
+
+    Allows the user to:
+    - Enter personal details
+    - Register an account
+    - Access the app marketplace
+-->
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pattern_bg">
+
+    <!-- MAIN CONTENT -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,12 +22,16 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- APP LOGO -->
+
         <ImageView
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo" />
+
+        <!-- NAME FIELD -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,14 +39,16 @@
             android:text="Name:"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:hint="Enter your name"
-            android:backgroundTint="#FFD700"/>
+            android:backgroundTint="#FFD700" />
+
+        <!-- EMAIL FIELD -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,14 +56,16 @@
             android:text="Email:"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:hint="Enter your email"
-            android:backgroundTint="#FFD700"/>
+            android:backgroundTint="#FFD700" />
+
+        <!-- UNIVERSITY FIELD -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,24 +73,26 @@
             android:text="University:"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
 
         <EditText
             android:id="@+id/etUniversity"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:hint="Enter university"
-            android:backgroundTint="#FFD700"/>
+            android:backgroundTint="#FFD700" />
+
+        <!-- REGISTER BUTTON -->
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Register!"
-            android:textSize="18sp"
-            android:textColor="#FFFFFF"
+            android:layout_marginTop="30dp"
             android:backgroundTint="#0F8A3C"
-            android:layout_marginTop="30dp"/>
+            android:text="Register!"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
