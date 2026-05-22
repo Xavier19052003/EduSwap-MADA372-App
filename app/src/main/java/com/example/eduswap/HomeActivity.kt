@@ -1,21 +1,44 @@
 package com.example.eduswap
 
+// Allows movement between app screens
 import android.content.Intent
+
+// Used when the activity starts
 import android.os.Bundle
+
+// Used for search bar text changes
 import android.text.Editable
 import android.text.TextWatcher
+
+// Used to show or hide views
 import android.view.View
+
+// UI components used in this screen
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+
+// Base class for Android activities
 import androidx.appcompat.app.AppCompatActivity
+
+/*
+    HomeActivity is the main marketplace screen.
+
+    Users can:
+    - View listed textbooks
+    - Search for books
+    - Open book details
+    - Navigate to other screens
+*/
 
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Connects this activity
+        // to activity_home.xml
         setContentView(R.layout.activity_home)
 
         // SEARCH BAR
@@ -23,32 +46,49 @@ class HomeActivity : AppCompatActivity() {
         val etSearch =
             findViewById<EditText>(R.id.etSearch)
 
-        // USER CARD
+        // USER LISTING CARD
 
         val userMarketplaceCard =
-            findViewById<LinearLayout>(R.id.userMarketplaceCard)
+            findViewById<LinearLayout>(
+                R.id.userMarketplaceCard
+            )
 
         val imgUserBook =
-            findViewById<ImageView>(R.id.imgUserBook)
+            findViewById<ImageView>(
+                R.id.imgUserBook
+            )
 
         val tvUserTitle =
-            findViewById<TextView>(R.id.tvUserTitle)
+            findViewById<TextView>(
+                R.id.tvUserTitle
+            )
 
         val tvUserPrice =
-            findViewById<TextView>(R.id.tvUserPrice)
+            findViewById<TextView>(
+                R.id.tvUserPrice
+            )
 
         val tvUserSeller =
-            findViewById<TextView>(R.id.tvUserSeller)
+            findViewById<TextView>(
+                R.id.tvUserSeller
+            )
 
         val tvUserUniversity =
-            findViewById<TextView>(R.id.tvUserUniversity)
+            findViewById<TextView>(
+                R.id.tvUserUniversity
+            )
 
-        // MOCK CARD
+        // MOCK PLACEHOLDER CARD
 
         val marketplaceCard =
-            findViewById<LinearLayout>(R.id.marketplaceCard)
+            findViewById<LinearLayout>(
+                R.id.marketplaceCard
+            )
 
-        // USER BOOK DATA
+        /*
+            Displays the user listing
+            only if a book has been posted
+        */
 
         if (BookData.title.isNotEmpty()) {
 
@@ -67,6 +107,8 @@ class HomeActivity : AppCompatActivity() {
             tvUserUniversity.text =
                 "University: ${BookData.university}"
 
+            // Loads uploaded image
+
             if (BookData.image1 != null) {
 
                 imgUserBook.setImageURI(
@@ -75,7 +117,7 @@ class HomeActivity : AppCompatActivity() {
 
             }
 
-            // USER CARD CLICK
+            // Opens user book details
 
             userMarketplaceCard.setOnClickListener {
 
@@ -92,7 +134,7 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
-        // MOCK CARD CLICK
+        // Opens mock book details
 
         marketplaceCard.setOnClickListener {
 
@@ -117,7 +159,7 @@ class HomeActivity : AppCompatActivity() {
                     val searchText =
                         s.toString().lowercase()
 
-                    // MOCK BOOK
+                    // MOCK BOOK SEARCH
 
                     val mockBookTitle =
                         "Lord of the Rings".lowercase()
@@ -136,7 +178,7 @@ class HomeActivity : AppCompatActivity() {
 
                     }
 
-                    // USER BOOK
+                    // USER BOOK SEARCH
 
                     if (BookData.title.isNotEmpty()) {
 
@@ -157,7 +199,7 @@ class HomeActivity : AppCompatActivity() {
 
                     }
 
-                    // EMPTY SEARCH
+                    // SHOWS ALL BOOKS IF SEARCH IS EMPTY
 
                     if (searchText.isEmpty()) {
 
@@ -196,34 +238,55 @@ class HomeActivity : AppCompatActivity() {
         // NAVBAR
 
         val navSell =
-            findViewById<LinearLayout>(R.id.navSell)
+            findViewById<LinearLayout>(
+                R.id.navSell
+            )
 
         val navAccount =
-            findViewById<LinearLayout>(R.id.navAccount)
+            findViewById<LinearLayout>(
+                R.id.navAccount
+            )
 
         val navChat =
-            findViewById<LinearLayout>(R.id.navChat)
+            findViewById<LinearLayout>(
+                R.id.navChat
+            )
+
+        // SELL SCREEN
 
         navSell.setOnClickListener {
 
             startActivity(
-                Intent(this, SellActivity::class.java)
+                Intent(
+                    this,
+                    SellActivity::class.java
+                )
             )
 
         }
+
+        // PROFILE SCREEN
 
         navAccount.setOnClickListener {
 
             startActivity(
-                Intent(this, ProfileActivity::class.java)
+                Intent(
+                    this,
+                    ProfileActivity::class.java
+                )
             )
 
         }
 
+        // CHAT SCREEN
+
         navChat.setOnClickListener {
 
             startActivity(
-                Intent(this, ChatListActivity::class.java)
+                Intent(
+                    this,
+                    ChatListActivity::class.java
+                )
             )
 
         }

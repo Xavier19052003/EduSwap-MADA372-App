@@ -1,21 +1,40 @@
 package com.example.eduswap
 
+// Allows navigation between screens
 import android.content.Intent
+
+// Used when the activity starts
 import android.os.Bundle
+
+// Used to show or hide views
 import android.view.View
+
+// UI components used in this screen
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+
+// Shows popup feedback messages
 import android.widget.Toast
+
+// Base class for Android activities
 import androidx.appcompat.app.AppCompatActivity
+
+/*
+    ProfileActivity displays
+    the user's personal information
+    and their listed textbook.
+*/
 
 class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Connects this activity
+        // to activity_profile.xml
         setContentView(R.layout.activity_profile)
 
         // PROFILE LISTING VIEWS
@@ -45,7 +64,10 @@ class ProfileActivity : AppCompatActivity() {
                 R.id.tvNoListings
             )
 
-        // SHOW LISTING ONLY IF USER POSTED A BOOK
+        /*
+            Shows the user's listing
+            only if a book has been posted
+        */
 
         if (BookData.title.isNotEmpty()) {
 
@@ -54,6 +76,8 @@ class ProfileActivity : AppCompatActivity() {
 
             tvProfileBookPrice.text =
                 "R${BookData.price}"
+
+            // Loads uploaded image
 
             if (BookData.image1 != null) {
 
@@ -88,7 +112,7 @@ class ProfileActivity : AppCompatActivity() {
                 R.id.etUniversity
             )
 
-        // LOAD USER DATA
+        // Loads saved user data
 
         etName.setText(UserData.name)
 
@@ -125,7 +149,7 @@ class ProfileActivity : AppCompatActivity() {
                 R.id.btnRemoveListing
             )
 
-        // NAVIGATION
+        // HOME SCREEN
 
         navHome.setOnClickListener {
 
@@ -138,6 +162,8 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
+        // SELL SCREEN
+
         navSell.setOnClickListener {
 
             startActivity(
@@ -148,6 +174,8 @@ class ProfileActivity : AppCompatActivity() {
             )
 
         }
+
+        // CHAT SCREEN
 
         navChat.setOnClickListener {
 
@@ -164,6 +192,8 @@ class ProfileActivity : AppCompatActivity() {
 
         btnRemoveListing.setOnClickListener {
 
+            // Clears stored book data
+
             BookData.title = ""
             BookData.price = ""
             BookData.seller = ""
@@ -174,11 +204,15 @@ class ProfileActivity : AppCompatActivity() {
             BookData.image2 = null
             BookData.image3 = null
 
+            // Hides listing card
+
             profileListingCard.visibility =
                 View.GONE
 
             tvNoListings.visibility =
                 View.VISIBLE
+
+            // Success message
 
             Toast.makeText(
                 this,
@@ -192,13 +226,13 @@ class ProfileActivity : AppCompatActivity() {
 
         btnLogout.setOnClickListener {
 
-            // CLEAR USER DATA
+            // Clears user data
 
             UserData.name = ""
             UserData.email = ""
             UserData.university = ""
 
-            // CLEAR BOOK DATA
+            // Clears book data
 
             BookData.title = ""
             BookData.price = ""
@@ -210,7 +244,7 @@ class ProfileActivity : AppCompatActivity() {
             BookData.image2 = null
             BookData.image3 = null
 
-            // TOAST
+            // Logout message
 
             Toast.makeText(
                 this,
@@ -218,7 +252,7 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            // RETURN TO REGISTER
+            // Returns to register screen
 
             val intent =
                 Intent(

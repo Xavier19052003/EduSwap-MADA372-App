@@ -1,25 +1,51 @@
 package com.example.eduswap
 
+// Allows navigation between screens
 import android.content.Intent
+
+// Used for storing selected gallery image paths
 import android.net.Uri
+
+// Used when the activity starts
 import android.os.Bundle
+
+// UI components used in this screen
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+
+// Allows users to select images from gallery
 import androidx.activity.result.contract.ActivityResultContracts
+
+// Base class for Android activities
 import androidx.appcompat.app.AppCompatActivity
+
+// Shows popup feedback messages
 import android.widget.Toast
 
+/*
+    SellActivity allows users
+    to create and upload
+    a textbook listing.
+
+    Users can:
+    - Add book details
+    - Upload images
+    - Select condition
+    - Post listing to marketplace
+*/
 
 class SellActivity : AppCompatActivity() {
 
-    // TRACK IMAGES
+    // IMAGE VIEWS
 
     private lateinit var imgBook1: ImageView
     private lateinit var imgBook2: ImageView
     private lateinit var imgBook3: ImageView
+
+    // Tracks which image slot is selected
 
     private var currentImage = 1
 
@@ -34,6 +60,8 @@ class SellActivity : AppCompatActivity() {
 
                 when (currentImage) {
 
+                    // FIRST IMAGE
+
                     1 -> {
 
                         imgBook1.setImageURI(uri)
@@ -42,6 +70,8 @@ class SellActivity : AppCompatActivity() {
 
                     }
 
+                    // SECOND IMAGE
+
                     2 -> {
 
                         imgBook2.setImageURI(uri)
@@ -49,6 +79,8 @@ class SellActivity : AppCompatActivity() {
                         BookData.image2 = uri
 
                     }
+
+                    // THIRD IMAGE
 
                     3 -> {
 
@@ -67,6 +99,8 @@ class SellActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Connects this activity
+        // to activity_sell.xml
         setContentView(R.layout.activity_sell)
 
         // IMAGE VIEWS
@@ -118,7 +152,7 @@ class SellActivity : AppCompatActivity() {
                 R.id.etBookPrice
             )
 
-        // CHECKBOXES
+        // CONDITION CHECKBOXES
 
         val cbNew =
             findViewById<CheckBox>(
@@ -130,7 +164,10 @@ class SellActivity : AppCompatActivity() {
                 R.id.cbUsed
             )
 
-        // ONLY ONE CHECKBOX ACTIVE
+        /*
+            Allows only one condition
+            to be selected at a time
+        */
 
         cbNew.setOnClickListener {
 
@@ -187,6 +224,8 @@ class SellActivity : AppCompatActivity() {
 
             }
 
+            // Checks if condition was selected
+
             if (!cbNew.isChecked &&
                 !cbUsed.isChecked
             ) {
@@ -212,7 +251,7 @@ class SellActivity : AppCompatActivity() {
             BookData.seller =
                 UserData.name
 
-            // SAVE CONDITION
+            // SAVE BOOK CONDITION
 
             if (cbNew.isChecked) {
 
@@ -228,13 +267,15 @@ class SellActivity : AppCompatActivity() {
 
             }
 
+            // Success message
+
             Toast.makeText(
                 this,
                 "Book Listed Successfully!",
                 Toast.LENGTH_SHORT
             ).show()
 
-            // OPEN HOME SCREEN
+            // Opens home screen
 
             startActivity(
                 Intent(
@@ -262,6 +303,8 @@ class SellActivity : AppCompatActivity() {
                 R.id.navChat
             )
 
+        // HOME SCREEN
+
         navHome.setOnClickListener {
 
             startActivity(
@@ -273,6 +316,8 @@ class SellActivity : AppCompatActivity() {
 
         }
 
+        // PROFILE SCREEN
+
         navAccount.setOnClickListener {
 
             startActivity(
@@ -283,6 +328,8 @@ class SellActivity : AppCompatActivity() {
             )
 
         }
+
+        // CHAT SCREEN
 
         navChat.setOnClickListener {
 

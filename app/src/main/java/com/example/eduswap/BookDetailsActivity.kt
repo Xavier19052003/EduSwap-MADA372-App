@@ -1,46 +1,81 @@
 package com.example.eduswap
 
+// Allows navigation between screens/activities
 import android.content.Intent
+
+// Used to start the activity and save screen state
 import android.os.Bundle
+
+// UI components used in this screen
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+
+// Shows small popup feedback messages
 import android.widget.Toast
+
+// Base class for Android app screens
+import androidx.appcompat.app.AppCompatActivity
+
+/*
+    BookDetailsActivity displays all information
+    about the selected textbook listing.
+
+    This includes:
+    - Book title
+    - Price
+    - Seller
+    - University
+    - Book condition
+    - Uploaded images
+
+    The screen also allows the user
+    to start a chat inquiry with the seller.
+*/
 
 class BookDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Connects this Kotlin file
+        // to activity_book_details.xml
         setContentView(R.layout.activity_book_details)
 
         // CONNECT VIEWS
 
+        // Main large book image
         val imgBookMain =
             findViewById<ImageView>(R.id.imgBookMain)
 
+        // Displays book title
         val tvBookTitle =
             findViewById<TextView>(R.id.tvBookTitle)
 
+        // Displays book price
         val tvBookPrice =
             findViewById<TextView>(R.id.tvBookPrice)
 
+        // Displays whether the book is New or Used
         val tvBookCondition =
             findViewById<TextView>(
                 R.id.tvBookCondition
             )
 
+        // Displays seller name
         val tvBookSeller =
             findViewById<TextView>(R.id.tvBookSeller)
 
+        // Displays seller university/location
         val tvBookLocation =
             findViewById<TextView>(R.id.tvBookLocation)
 
+        // Button used to start a chat inquiry
         val btnInquire =
             findViewById<Button>(R.id.button3)
 
+        // Thumbnail images below the main image
         val imgThumb1 =
             findViewById<ImageView>(R.id.imgThumb1)
 
@@ -50,23 +85,35 @@ class BookDetailsActivity : AppCompatActivity() {
         val imgThumb3 =
             findViewById<ImageView>(R.id.imgThumb3)
 
-        // CHECK WHICH BOOK WAS CLICKED
+        /*
+            Checks whether the user opened:
+            - the placeholder mock book
+            OR
+            - a real uploaded listing
+        */
 
         if (BookData.isMockBook) {
 
-            // MOCK BOOK
+            // MOCK BOOK DATA
 
-            tvBookTitle.text = "Lord of the Rings"
+            tvBookTitle.text =
+                "Lord of the Rings"
 
-            tvBookPrice.text = "R200"
+            tvBookPrice.text =
+                "R200"
 
-            tvBookSeller.text = "Durell"
+            tvBookSeller.text =
+                "Durell"
 
-            tvBookLocation.text = "STADIO University"
+            tvBookLocation.text =
+                "STADIO University"
+
+            tvBookCondition.text =
+                "Used"
 
         } else {
 
-            // USER BOOK
+            // USER BOOK DATA
 
             tvBookTitle.text =
                 BookData.title
@@ -80,11 +127,12 @@ class BookDetailsActivity : AppCompatActivity() {
             tvBookLocation.text =
                 BookData.university
 
-            // MAIN IMAGE
+            tvBookCondition.text =
+                BookData.condition
+
+            // LOAD MAIN IMAGE
 
             if (BookData.image1 != null) {
-
-                tvBookCondition.text = "Used"
 
                 imgBookMain.setImageURI(
                     BookData.image1
@@ -96,7 +144,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
             }
 
-            // SECOND IMAGE
+            // LOAD SECOND IMAGE
 
             if (BookData.image2 != null) {
 
@@ -106,7 +154,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
             }
 
-            // THIRD IMAGE
+            // LOAD THIRD IMAGE
 
             if (BookData.image3 != null) {
 
@@ -116,7 +164,11 @@ class BookDetailsActivity : AppCompatActivity() {
 
             }
 
-            // THUMBNAIL CLICK EVENTS
+            /*
+                Allows the user to switch
+                the main image by clicking
+                the thumbnails
+            */
 
             imgThumb1.setOnClickListener {
 
@@ -155,7 +207,16 @@ class BookDetailsActivity : AppCompatActivity() {
             }
 
         }
+
+        // INQUIRE BUTTON
+
         btnInquire.setOnClickListener {
+
+            /*
+                Prevents the user from
+                messaging themselves
+            */
+
             if (BookData.seller == UserData.name) {
 
                 Toast.makeText(
@@ -168,22 +229,25 @@ class BookDetailsActivity : AppCompatActivity() {
 
             }
 
+            /*
+                Stores the seller name
+                so the chat screen knows
+                who the conversation is with
+            */
+
             if (BookData.isMockBook) {
 
-                UserData.currentChatSeller = "Durell"
+                UserData.currentChatSeller =
+                    "Durell"
 
             } else {
-
-                tvBookCondition.text =
-                    BookData.condition
-
-                tvBookLocation.text =
-                    BookData.university
 
                 UserData.currentChatSeller =
                     BookData.seller
 
             }
+
+            // Opens the chat screen
 
             startActivity(
                 Intent(this, ChatActivity::class.java)
@@ -205,6 +269,8 @@ class BookDetailsActivity : AppCompatActivity() {
         val navChat =
             findViewById<LinearLayout>(R.id.navChat)
 
+        // HOME BUTTON
+
         navHome.setOnClickListener {
 
             startActivity(
@@ -212,6 +278,8 @@ class BookDetailsActivity : AppCompatActivity() {
             )
 
         }
+
+        // SELL BUTTON
 
         navSell.setOnClickListener {
 
@@ -221,6 +289,8 @@ class BookDetailsActivity : AppCompatActivity() {
 
         }
 
+        // PROFILE BUTTON
+
         navAccount.setOnClickListener {
 
             startActivity(
@@ -228,6 +298,8 @@ class BookDetailsActivity : AppCompatActivity() {
             )
 
         }
+
+        // CHAT BUTTON
 
         navChat.setOnClickListener {
 

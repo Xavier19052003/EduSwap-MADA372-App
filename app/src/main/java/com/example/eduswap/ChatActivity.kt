@@ -1,20 +1,39 @@
 package com.example.eduswap
 
+// Allows movement between app screens
 import android.content.Intent
+
+// Used for message bubble colours
 import android.graphics.Color
+
+// Used when the activity starts
 import android.os.Bundle
+
+// UI components used in this screen
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+
+// Shows popup feedback messages
 import android.widget.Toast
+
+// Base class for app screens
 import androidx.appcompat.app.AppCompatActivity
+
+/*
+    ChatActivity allows users
+    to send simple inquiry messages
+    to textbook sellers.
+*/
 
 class ChatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Connects this activity
+        // to activity_chat.xml
         setContentView(R.layout.activity_chat)
 
         // CHAT HEADER
@@ -24,6 +43,7 @@ class ChatActivity : AppCompatActivity() {
                 R.id.tvChatSeller
             )
 
+        // Displays seller name
         tvChatSeller.text =
             UserData.currentChatSeller
 
@@ -51,7 +71,7 @@ class ChatActivity : AppCompatActivity() {
             val message =
                 etMessage.text.toString()
 
-            // VALIDATION
+            // Prevents empty messages
 
             if (message.isEmpty()) {
 
@@ -65,7 +85,7 @@ class ChatActivity : AppCompatActivity() {
 
             }
 
-            // CREATE MESSAGE
+            // Creates a new message bubble
 
             val messageText =
                 TextView(this)
@@ -82,9 +102,13 @@ class ChatActivity : AppCompatActivity() {
                 16
             )
 
+            // Message bubble colour
+
             messageText.setBackgroundColor(
                 Color.parseColor("#D4EDDA")
             )
+
+            // Positions message on screen
 
             val params =
                 LinearLayout.LayoutParams(
@@ -99,13 +123,13 @@ class ChatActivity : AppCompatActivity() {
             messageText.layoutParams =
                 params
 
-            // ADD MESSAGE TO CHAT
+            // Adds message to chat
 
             chatContainer.addView(
                 messageText
             )
 
-            // CLEAR INPUT
+            // Clears text input
 
             etMessage.text.clear()
 
@@ -133,6 +157,8 @@ class ChatActivity : AppCompatActivity() {
                 R.id.navChat
             )
 
+        // HOME SCREEN
+
         navHome.setOnClickListener {
 
             startActivity(
@@ -143,6 +169,8 @@ class ChatActivity : AppCompatActivity() {
             )
 
         }
+
+        // SELL SCREEN
 
         navSell.setOnClickListener {
 
@@ -155,6 +183,8 @@ class ChatActivity : AppCompatActivity() {
 
         }
 
+        // PROFILE SCREEN
+
         navAccount.setOnClickListener {
 
             startActivity(
@@ -165,6 +195,8 @@ class ChatActivity : AppCompatActivity() {
             )
 
         }
+
+        // CHAT LIST SCREEN
 
         navChat.setOnClickListener {
 
