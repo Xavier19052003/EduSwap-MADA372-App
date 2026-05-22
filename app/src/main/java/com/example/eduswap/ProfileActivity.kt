@@ -8,9 +8,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -75,13 +74,19 @@ class ProfileActivity : AppCompatActivity() {
         // PROFILE FIELDS
 
         val etName =
-            findViewById<EditText>(R.id.etName)
+            findViewById<EditText>(
+                R.id.etName
+            )
 
         val etEmail =
-            findViewById<EditText>(R.id.etEmail)
+            findViewById<EditText>(
+                R.id.etEmail
+            )
 
         val etUniversity =
-            findViewById<EditText>(R.id.etUniversity)
+            findViewById<EditText>(
+                R.id.etUniversity
+            )
 
         // LOAD USER DATA
 
@@ -94,25 +99,41 @@ class ProfileActivity : AppCompatActivity() {
         // NAVBAR
 
         val navHome =
-            findViewById<LinearLayout>(R.id.navHome)
+            findViewById<LinearLayout>(
+                R.id.navHome
+            )
 
         val navSell =
-            findViewById<LinearLayout>(R.id.navSell)
+            findViewById<LinearLayout>(
+                R.id.navSell
+            )
 
         val navChat =
-            findViewById<LinearLayout>(R.id.navChat)
+            findViewById<LinearLayout>(
+                R.id.navChat
+            )
 
-        // LOGOUT BUTTON
+        // BUTTONS
 
         val btnLogout =
-            findViewById<Button>(R.id.button4)
+            findViewById<Button>(
+                R.id.button4
+            )
+
+        val btnRemoveListing =
+            findViewById<Button>(
+                R.id.btnRemoveListing
+            )
 
         // NAVIGATION
 
         navHome.setOnClickListener {
 
             startActivity(
-                Intent(this, HomeActivity::class.java)
+                Intent(
+                    this,
+                    HomeActivity::class.java
+                )
             )
 
         }
@@ -120,7 +141,10 @@ class ProfileActivity : AppCompatActivity() {
         navSell.setOnClickListener {
 
             startActivity(
-                Intent(this, SellActivity::class.java)
+                Intent(
+                    this,
+                    SellActivity::class.java
+                )
             )
 
         }
@@ -128,8 +152,39 @@ class ProfileActivity : AppCompatActivity() {
         navChat.setOnClickListener {
 
             startActivity(
-                Intent(this, ChatListActivity::class.java)
+                Intent(
+                    this,
+                    ChatListActivity::class.java
+                )
             )
+
+        }
+
+        // REMOVE LISTING
+
+        btnRemoveListing.setOnClickListener {
+
+            BookData.title = ""
+            BookData.price = ""
+            BookData.seller = ""
+            BookData.university = ""
+            BookData.condition = ""
+
+            BookData.image1 = null
+            BookData.image2 = null
+            BookData.image3 = null
+
+            profileListingCard.visibility =
+                View.GONE
+
+            tvNoListings.visibility =
+                View.VISIBLE
+
+            Toast.makeText(
+                this,
+                "Listing removed successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
 
         }
 
@@ -137,20 +192,31 @@ class ProfileActivity : AppCompatActivity() {
 
         btnLogout.setOnClickListener {
 
-            // CLEAR TEMPORARY DATA
+            // CLEAR USER DATA
 
             UserData.name = ""
             UserData.email = ""
             UserData.university = ""
 
+            // CLEAR BOOK DATA
+
             BookData.title = ""
             BookData.price = ""
             BookData.seller = ""
             BookData.university = ""
+            BookData.condition = ""
 
             BookData.image1 = null
             BookData.image2 = null
             BookData.image3 = null
+
+            // TOAST
+
+            Toast.makeText(
+                this,
+                "Logout Successful!",
+                Toast.LENGTH_SHORT
+            ).show()
 
             // RETURN TO REGISTER
 
@@ -159,12 +225,6 @@ class ProfileActivity : AppCompatActivity() {
                     this,
                     RegisterActivity::class.java
                 )
-
-            Toast.makeText(
-                this,
-                "Logout Successful!",
-                Toast.LENGTH_SHORT
-            ).show()
 
             startActivity(intent)
 
