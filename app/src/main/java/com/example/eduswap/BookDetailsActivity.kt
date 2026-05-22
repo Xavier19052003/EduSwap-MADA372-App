@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.Toast
 
 class BookDetailsActivity : AppCompatActivity() {
 
@@ -155,6 +156,17 @@ class BookDetailsActivity : AppCompatActivity() {
 
         }
         btnInquire.setOnClickListener {
+            if (BookData.seller == UserData.name) {
+
+                Toast.makeText(
+                    this,
+                    "You cannot inquire on your own listing",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                return@setOnClickListener
+
+            }
 
             if (BookData.isMockBook) {
 
