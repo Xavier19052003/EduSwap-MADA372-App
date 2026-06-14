@@ -59,20 +59,38 @@ class HomeActivity : AppCompatActivity() {
         rvBooks.layoutManager =
             LinearLayoutManager(this)
 
-        rvBooks.adapter =
+        val textbookAdapter =
             TextbookAdapter(
                 TextbookRepository.textbooks
             )
+
+        rvBooks.adapter =
+            textbookAdapter
 
         // SEARCH FUNCTION
 
         etSearch.addTextChangedListener(
             object : TextWatcher {
 
-                override fun afterTextChanged(s: Editable?) {
+                override fun afterTextChanged(
+                    s: Editable?
+
+                ) {
 
                     val searchText =
                         s.toString().lowercase()
+
+                    val filteredBooks =
+                        TextbookRepository.textbooks.filter {
+
+                            it.title.lowercase()
+                                .contains(searchText)
+
+                        }.toMutableList()
+
+                    textbookAdapter.updateList(
+                        filteredBooks
+                    )
 
                 }
 

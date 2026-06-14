@@ -11,7 +11,7 @@ import android.content.Intent
 
 class TextbookAdapter(
 
-    private val textbooks: List<Textbook>
+    private var textbooks: MutableList<Textbook>
 
 ) : RecyclerView.Adapter<TextbookAdapter.TextbookViewHolder>() {
 
@@ -115,6 +115,15 @@ class TextbookAdapter(
             )
 
         }
+
+    }
+    fun updateList(
+        newList: MutableList<Textbook>
+    ) {
+
+        textbooks = newList
+
+        notifyDataSetChanged()
 
     }
 
