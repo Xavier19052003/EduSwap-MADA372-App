@@ -11,7 +11,7 @@ object TextbookRepository {
                 edition = "3rd Edition",
                 description = "Fantasy adventure novel.",
                 price = "200",
-                seller = "Durell",
+                seller = "Kaitlynn",
                 university = "STADIO",
                 condition = "Used"
             ),
@@ -21,8 +21,8 @@ object TextbookRepository {
                 author = "Thomas Connolly",
                 edition = "6th Edition",
                 description = "Introduction to database design and SQL.",
-                price = "350",
-                seller = "Sarah",
+                price = "420",
+                seller = "Durell",
                 university = "STADIO",
                 condition = "Used"
             ),
@@ -32,8 +32,8 @@ object TextbookRepository {
                 author = "John Lewis",
                 edition = "8th Edition",
                 description = "Comprehensive Java programming textbook.",
-                price = "420",
-                seller = "Mike",
+                price = "690",
+                seller = "Katlego",
                 university = "Varsity College",
                 condition = "New"
             ),
@@ -44,7 +44,7 @@ object TextbookRepository {
                 edition = "10th Edition",
                 description = "Fundamentals of information systems.",
                 price = "300",
-                seller = "Emma",
+                seller = "Zani",
                 university = "IIE MSA",
                 condition = "Used"
             )

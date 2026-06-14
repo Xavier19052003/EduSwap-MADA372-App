@@ -148,6 +148,60 @@ class BookDetailsActivity : AppCompatActivity() {
 
             }
 
+            if (textbook.image2 != null) {
+
+                imgThumb2.setImageURI(
+                    textbook.image2
+                )
+
+            }
+
+            if (textbook.image3 != null) {
+
+                imgThumb3.setImageURI(
+                    textbook.image3
+                )
+
+            }
+
+            // THUMBNAIL CLICK EVENTS
+
+            imgThumb1.setOnClickListener {
+
+                if (textbook.image1 != null) {
+
+                    imgBookMain.setImageURI(
+                        textbook.image1
+                    )
+
+                }
+
+            }
+
+            imgThumb2.setOnClickListener {
+
+                if (textbook.image2 != null) {
+
+                    imgBookMain.setImageURI(
+                        textbook.image2
+                    )
+
+                }
+
+            }
+
+            imgThumb3.setOnClickListener {
+
+                if (textbook.image3 != null) {
+
+                    imgBookMain.setImageURI(
+                        textbook.image3
+                    )
+
+                }
+
+            }
+
         } else {
 
             tvBookTitle.text =

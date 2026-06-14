@@ -329,7 +329,9 @@ class SellActivity : AppCompatActivity() {
                     seller = UserData.name,
                     university = UserData.university,
                     condition = BookData.condition,
-                    image1 = BookData.image1
+                    image1 = BookData.image1,
+                    image2 = BookData.image2,
+                    image3 = BookData.image3
                 )
 
             // ADD TO REPOSITORY

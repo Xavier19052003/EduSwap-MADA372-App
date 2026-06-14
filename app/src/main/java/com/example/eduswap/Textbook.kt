@@ -11,5 +11,7 @@ data class Textbook(
     val seller: String,
     val university: String,
     val condition: String,
-    val image1: Uri? = null
+    val image1: Uri? = null,
+    val image2: Uri? = null,
+    val image3: Uri? = null
 )
