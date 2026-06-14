@@ -10,11 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 
 // UI components used in this screen
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 
 // Allows users to select images from gallery
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 // Shows popup feedback messages
 import android.widget.Toast
+
+// ViewBinding import added
+import com.example.eduswap.databinding.ActivitySellBinding
 
 /*
     SellActivity allows users
@@ -39,309 +38,173 @@ import android.widget.Toast
 
 class SellActivity : AppCompatActivity() {
 
-    // IMAGE VIEWS
+    // ViewBinding object
+    private lateinit var binding: ActivitySellBinding
 
+    // IMAGE VIEWS
     private lateinit var imgBook1: ImageView
     private lateinit var imgBook2: ImageView
     private lateinit var imgBook3: ImageView
 
     // Tracks which image slot is selected
-
     private var currentImage = 1
 
     // IMAGE PICKER
-
     private val imagePicker =
         registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) { uri: Uri? ->
-
             if (uri != null) {
-
                 when (currentImage) {
-
                     // FIRST IMAGE
-
                     1 -> {
-
                         imgBook1.setImageURI(uri)
-
                         BookData.image1 = uri
-
                     }
-
                     // SECOND IMAGE
-
                     2 -> {
-
                         imgBook2.setImageURI(uri)
-
                         BookData.image2 = uri
-
                     }
-
                     // THIRD IMAGE
-
                     3 -> {
-
                         imgBook3.setImageURI(uri)
-
                         BookData.image3 = uri
-
                     }
-
                 }
-
             }
-
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Connects this activity
-        // to activity_sell.xml
-        setContentView(R.layout.activity_sell)
+        // Inflate layout using ViewBinding
+        binding = ActivitySellBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // IMAGE VIEWS
-
-        imgBook1 =
-            findViewById(R.id.imgBook1)
-
-        imgBook2 =
-            findViewById(R.id.imgBook2)
-
-        imgBook3 =
-            findViewById(R.id.imgBook3)
+        // IMAGE VIEWS – now assigned via binding
+        imgBook1 = binding.imgBook1
+        imgBook2 = binding.imgBook2
+        imgBook3 = binding.imgBook3
 
         // IMAGE CLICK EVENTS
-
         imgBook1.setOnClickListener {
-
             currentImage = 1
-
             imagePicker.launch("image/*")
-
         }
 
         imgBook2.setOnClickListener {
-
             currentImage = 2
-
             imagePicker.launch("image/*")
-
         }
 
         imgBook3.setOnClickListener {
-
             currentImage = 3
-
             imagePicker.launch("image/*")
-
         }
 
-        // FORM FIELDS
+        // FORM FIELDS (using binding)
+        val etBookTitle = binding.etBookTitle
+        val etBookPrice = binding.etBookPrice
+        val etAuthor = binding.etAuthor
+        val etEdition = binding.etEdition
+        val etDescription = binding.etDescription
 
-        val etBookTitle =
-            findViewById<EditText>(
-                R.id.etBookTitle
-            )
-
-        val etBookPrice =
-            findViewById<EditText>(
-                R.id.etBookPrice
-            )
-        val etAuthor =
-            findViewById<EditText>(
-                R.id.etAuthor
-            )
-
-        val etEdition =
-            findViewById<EditText>(
-                R.id.etEdition
-            )
-
-        val etDescription =
-            findViewById<EditText>(
-                R.id.etDescription
-            )
-
-        // CONDITION CHECKBOXES
-
-        val cbNew =
-            findViewById<CheckBox>(
-                R.id.cbNew
-            )
-
-        val cbUsed =
-            findViewById<CheckBox>(
-                R.id.cbUsed
-            )
+        // CONDITION CHECKBOXES (using binding)
+        val cbNew = binding.cbNew
+        val cbUsed = binding.cbUsed
 
         /*
             Allows only one condition
             to be selected at a time
         */
-
         cbNew.setOnClickListener {
-
             if (cbNew.isChecked) {
-
                 cbUsed.isChecked = false
-
             }
-
         }
 
         cbUsed.setOnClickListener {
-
             if (cbUsed.isChecked) {
-
                 cbNew.isChecked = false
-
             }
-
         }
 
-        // LIST ITEM BUTTON
-
-        val btnListItem =
-            findViewById<Button>(
-                R.id.btnListItem
-            )
+        // LIST ITEM BUTTON (using binding)
+        val btnListItem = binding.btnListItem
 
         btnListItem.setOnClickListener {
-
-            val title =
-                etBookTitle.text.toString()
-
-            val price =
-                etBookPrice.text.toString()
-
-            val author =
-                etAuthor.text.toString()
-
-            val edition =
-                etEdition.text.toString()
-
-            val description =
-                etDescription.text.toString()
+            val title = etBookTitle.text.toString()
+            val price = etBookPrice.text.toString()
+            val author = etAuthor.text.toString()
+            val edition = etEdition.text.toString()
+            val description = etDescription.text.toString()
 
             if (author.isEmpty()) {
-
-                etAuthor.error =
-                    "Enter the author"
-
+                etAuthor.error = "Enter the author"
                 return@setOnClickListener
-
             }
 
             if (edition.isEmpty()) {
-
-                etEdition.error =
-                    "Enter the edition"
-
+                etEdition.error = "Enter the edition"
                 return@setOnClickListener
-
             }
 
             if (description.isEmpty()) {
-
-                etDescription.error =
-                    "Enter a description"
-
+                etDescription.error = "Enter a description"
                 return@setOnClickListener
-
             }
 
             // VALIDATION
-
             if (title.isEmpty()) {
-
-                etBookTitle.error =
-                    "Enter a book title"
-
+                etBookTitle.error = "Enter a book title"
                 return@setOnClickListener
-
             }
 
             if (price.isEmpty()) {
-
-                etBookPrice.error =
-                    "Enter a price"
-
+                etBookPrice.error = "Enter a price"
                 return@setOnClickListener
-
             }
 
             // Checks if condition was selected
-
-            if (!cbNew.isChecked &&
-                !cbUsed.isChecked
-            ) {
-
-                cbUsed.error =
-                    "Select a condition"
-
+            if (!cbNew.isChecked && !cbUsed.isChecked) {
+                cbUsed.error = "Select a condition"
                 return@setOnClickListener
-
             }
 
             // SAVE BOOK DATA
-
-            BookData.university =
-                UserData.university
-
-            BookData.title =
-                title
-
-            BookData.price =
-                price
-
-            BookData.seller =
-                UserData.name
+            BookData.university = UserData.university
+            BookData.title = title
+            BookData.price = price
+            BookData.seller = UserData.name
 
             // SAVE BOOK CONDITION
-
             if (cbNew.isChecked) {
-
-                BookData.condition =
-                    "New"
-
+                BookData.condition = "New"
             }
-
             if (cbUsed.isChecked) {
-
-                BookData.condition =
-                    "Used"
-
+                BookData.condition = "Used"
             }
 
             // CREATE NEW TEXTBOOK OBJECT
-
-            val textbook =
-                Textbook(
-                    title = title,
-                    author = author,
-                    edition = edition,
-                    description = description,
-                    price = price,
-                    seller = UserData.name,
-                    university = UserData.university,
-                    condition = BookData.condition,
-                    image1 = BookData.image1,
-                    image2 = BookData.image2,
-                    image3 = BookData.image3
-                )
-
-            // ADD TO REPOSITORY
-
-            TextbookRepository.textbooks.add(
-                textbook
+            val textbook = Textbook(
+                title = title,
+                author = author,
+                edition = edition,
+                description = description,
+                price = price,
+                seller = UserData.name,
+                university = UserData.university,
+                condition = BookData.condition,
+                image1 = BookData.image1,
+                image2 = BookData.image2,
+                image3 = BookData.image3
             )
 
-            // Success message
+            // ADD TO REPOSITORY
+            TextbookRepository.textbooks.add(textbook)
 
+            // Success message
             Toast.makeText(
                 this,
                 "Book Listed Successfully!",
@@ -349,71 +212,22 @@ class SellActivity : AppCompatActivity() {
             ).show()
 
             // Opens home screen
-
             startActivity(
-                Intent(
-                    this,
-                    HomeActivity::class.java
-                )
+                Intent(this, HomeActivity::class.java)
             )
-
         }
 
-        // NAVBAR
-
-        val navHome =
-            findViewById<LinearLayout>(
-                R.id.navHome
-            )
-
-        val navAccount =
-            findViewById<LinearLayout>(
-                R.id.navAccount
-            )
-
-        val navChat =
-            findViewById<LinearLayout>(
-                R.id.navChat
-            )
-
-        // HOME SCREEN
-
-        navHome.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    HomeActivity::class.java
-                )
-            )
-
+        // NAVBAR (using binding directly)
+        binding.navHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
-        // PROFILE SCREEN
-
-        navAccount.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    ProfileActivity::class.java
-                )
-            )
-
+        binding.navAccount.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
 
-        // CHAT SCREEN
-
-        navChat.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    ChatListActivity::class.java
-                )
-            )
-
+        binding.navChat.setOnClickListener {
+            startActivity(Intent(this, ChatListActivity::class.java))
         }
-
     }
 }

@@ -6,15 +6,14 @@ import android.content.Intent
 // Used when the activity starts
 import android.os.Bundle
 
-// UI components used in this screen
-import android.widget.Button
-import android.widget.EditText
+// Shows popup feedback messages
+import android.widget.Toast
 
 // Base class for Android activities
 import androidx.appcompat.app.AppCompatActivity
 
-// Shows popup feedback messages
-import android.widget.Toast
+// ViewBinding for activity_register.xml
+import com.example.eduswap.databinding.ActivityRegisterBinding
 
 /*
     RegisterActivity allows the user
@@ -27,59 +26,55 @@ import android.widget.Toast
     - university
 
     are temporarily stored in UserData.
+
+    ViewBinding is used instead of
+    findViewById() to connect UI
+    components to Kotlin code.
 */
 
 class RegisterActivity : AppCompatActivity() {
 
+    // ViewBinding object
+
+    private lateinit var binding:
+            ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Connects this activity
-        // to activity_register.xml
-        setContentView(R.layout.activity_register)
+        // Inflates activity_register.xml
 
-        // CONNECT VIEWS
-
-        val etName =
-            findViewById<EditText>(
-                R.id.etName
+        binding =
+            ActivityRegisterBinding.inflate(
+                layoutInflater
             )
 
-        val etEmail =
-            findViewById<EditText>(
-                R.id.etEmail
-            )
+        // Displays the layout
 
-        val etUniversity =
-            findViewById<EditText>(
-                R.id.etUniversity
-            )
-
-        val btnRegister =
-            findViewById<Button>(
-                R.id.btnRegister
-            )
+        setContentView(
+            binding.root
+        )
 
         // REGISTER BUTTON
 
-        btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
 
             // Gets entered text
 
             val name =
-                etName.text.toString()
+                binding.etName.text.toString()
 
             val email =
-                etEmail.text.toString()
+                binding.etEmail.text.toString()
 
             val university =
-                etUniversity.text.toString()
+                binding.etUniversity.text.toString()
 
             // VALIDATION
 
             if (name.isEmpty()) {
 
-                etName.error =
+                binding.etName.error =
                     "Enter your name"
 
                 return@setOnClickListener
@@ -88,7 +83,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (email.isEmpty()) {
 
-                etEmail.error =
+                binding.etEmail.error =
                     "Enter your email"
 
                 return@setOnClickListener
@@ -97,7 +92,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (university.isEmpty()) {
 
-                etUniversity.error =
+                binding.etUniversity.error =
                     "Enter your university"
 
                 return@setOnClickListener
@@ -106,19 +101,14 @@ class RegisterActivity : AppCompatActivity() {
 
             // SAVE USER DATA
 
-            UserData.name = name
+            UserData.name =
+                name
 
-            UserData.email = email
+            UserData.email =
+                email
 
-            UserData.university = university
-
-            // Opens home screen
-
-            val intent =
-                Intent(
-                    this,
-                    HomeActivity::class.java
-                )
+            UserData.university =
+                university
 
             // Success message
 
@@ -128,9 +118,17 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            startActivity(intent)
+            // Opens Home screen
+
+            startActivity(
+                Intent(
+                    this,
+                    HomeActivity::class.java
+                )
+            )
 
         }
 
     }
+
 }

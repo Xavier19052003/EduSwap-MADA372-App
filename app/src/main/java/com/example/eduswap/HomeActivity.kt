@@ -25,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+// ViewBinding Import Added
+import com.example.eduswap.databinding.ActivityHomeBinding
+
 /*
     HomeActivity is the main marketplace screen.
 
@@ -37,61 +40,30 @@ import androidx.recyclerview.widget.RecyclerView
 
 class HomeActivity : AppCompatActivity() {
 
+    //ViewBinding Object
+    private lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Connects this activity
-        // to activity_home.xml
-        setContentView(R.layout.activity_home)
-
-        // SEARCH BAR
-
-        val etSearch =
-            findViewById<EditText>(R.id.etSearch)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // RECYCLERVIEW
+        binding.rvBooks.layoutManager = LinearLayoutManager(this)
 
-        val rvBooks =
-            findViewById<RecyclerView>(
-                R.id.rvBooks
-            )
-
-        rvBooks.layoutManager =
-            LinearLayoutManager(this)
-
-        val textbookAdapter =
-            TextbookAdapter(
-                TextbookRepository.textbooks
-            )
-
-        rvBooks.adapter =
-            textbookAdapter
+        val textbookAdapter = TextbookAdapter(TextbookRepository.textbooks)
+        binding.rvBooks.adapter = textbookAdapter
 
         // SEARCH FUNCTION
-
-        etSearch.addTextChangedListener(
+        binding.etSearch.addTextChangedListener(
             object : TextWatcher {
-
-                override fun afterTextChanged(
-                    s: Editable?
-
-                ) {
-
-                    val searchText =
-                        s.toString().lowercase()
-
-                    val filteredBooks =
-                        TextbookRepository.textbooks.filter {
-
-                            it.title.lowercase()
-                                .contains(searchText)
-
-                        }.toMutableList()
-
-                    textbookAdapter.updateList(
-                        filteredBooks
-                    )
-
+                override fun afterTextChanged(s: Editable?) {
+                    val searchText = s.toString().lowercase()
+                    val filteredBooks = TextbookRepository.textbooks.filter {
+                        it.title.lowercase().contains(searchText)
+                    }.toMutableList()
+                    textbookAdapter.updateList(filteredBooks)
                 }
 
                 override fun beforeTextChanged(
@@ -109,64 +81,22 @@ class HomeActivity : AppCompatActivity() {
                     count: Int
                 ) {
                 }
+            }
+        )
 
-            })
-
-        // NAVBAR
-
-        val navSell =
-            findViewById<LinearLayout>(
-                R.id.navSell
-            )
-
-        val navAccount =
-            findViewById<LinearLayout>(
-                R.id.navAccount
-            )
-
-        val navChat =
-            findViewById<LinearLayout>(
-                R.id.navChat
-            )
-
-        // SELL SCREEN
-
-        navSell.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    SellActivity::class.java
-                )
-            )
-
+        // NAVBAR – SELL SCREEN
+        binding.navSell.setOnClickListener {
+            startActivity(Intent(this, SellActivity::class.java))
         }
 
-        // PROFILE SCREEN
-
-        navAccount.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    ProfileActivity::class.java
-                )
-            )
-
+        // NAVBAR – PROFILE SCREEN
+        binding.navAccount.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
 
-        // CHAT SCREEN
-
-        navChat.setOnClickListener {
-
-            startActivity(
-                Intent(
-                    this,
-                    ChatListActivity::class.java
-                )
-            )
-
+        // NAVBAR – CHAT SCREEN
+        binding.navChat.setOnClickListener {
+            startActivity(Intent(this, ChatListActivity::class.java))
         }
-
     }
 }

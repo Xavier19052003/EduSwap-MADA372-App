@@ -18,6 +18,9 @@ import android.widget.Toast
 // Base class for Android app screens
 import androidx.appcompat.app.AppCompatActivity
 
+// ViewBinding import added
+import com.example.eduswap.databinding.ActivityBookDetailsBinding
+
 /*
     BookDetailsActivity displays all information
     about the selected textbook listing.
@@ -36,69 +39,47 @@ import androidx.appcompat.app.AppCompatActivity
 
 class BookDetailsActivity : AppCompatActivity() {
 
+    // ViewBinding object
+    private lateinit var binding: ActivityBookDetailsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Connects this Kotlin file
-        // to activity_book_details.xml
-        setContentView(R.layout.activity_book_details)
+        // Inflate layout using ViewBinding
+        binding = ActivityBookDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // CONNECT VIEWS
+        // CONNECT VIEWS (using binding)
 
         // Main large book image
-        val imgBookMain =
-            findViewById<ImageView>(R.id.imgBookMain)
+        val imgBookMain = binding.imgBookMain
 
         // Displays book title
-        val tvBookTitle =
-            findViewById<TextView>(R.id.tvBookTitle)
+        val tvBookTitle = binding.tvBookTitle
 
         // Displays book price
-        val tvBookPrice =
-            findViewById<TextView>(R.id.tvBookPrice)
+        val tvBookPrice = binding.tvBookPrice
 
         // Displays whether the book is New or Used
-        val tvBookCondition =
-            findViewById<TextView>(
-                R.id.tvBookCondition
-            )
+        val tvBookCondition = binding.tvBookCondition
 
         // Displays seller name
-        val tvBookSeller =
-            findViewById<TextView>(R.id.tvBookSeller)
+        val tvBookSeller = binding.tvBookSeller
 
         // Displays seller university/location
-        val tvBookLocation =
-            findViewById<TextView>(R.id.tvBookLocation)
+        val tvBookLocation = binding.tvBookLocation
 
         // Button used to start a chat inquiry
-        val btnInquire =
-            findViewById<Button>(R.id.button3)
+        val btnInquire = binding.button3
 
         // Thumbnail images below the main image
-        val imgThumb1 =
-            findViewById<ImageView>(R.id.imgThumb1)
+        val imgThumb1 = binding.imgThumb1
+        val imgThumb2 = binding.imgThumb2
+        val imgThumb3 = binding.imgThumb3
 
-        val imgThumb2 =
-            findViewById<ImageView>(R.id.imgThumb2)
-
-        val imgThumb3 =
-            findViewById<ImageView>(R.id.imgThumb3)
-
-        val tvBookAuthor =
-            findViewById<TextView>(
-                R.id.tvBookAuthor
-            )
-
-        val tvBookEdition =
-            findViewById<TextView>(
-                R.id.tvBookEdition
-            )
-
-        val tvBookDescription =
-            findViewById<TextView>(
-                R.id.tvBookDescription
-            )
+        val tvBookAuthor = binding.tvBookAuthor
+        val tvBookEdition = binding.tvBookEdition
+        val tvBookDescription = binding.tvBookDescription
 
         /*
             Checks whether the user opened:
@@ -109,116 +90,56 @@ class BookDetailsActivity : AppCompatActivity() {
 
         if (BookData.selectedTextbook != null) {
 
-            val textbook =
-                BookData.selectedTextbook!!
+            val textbook = BookData.selectedTextbook!!
 
-            tvBookTitle.text =
-                textbook.title
-
-            tvBookPrice.text =
-                "R${textbook.price}"
-
-            tvBookSeller.text =
-                textbook.seller
-
-            tvBookLocation.text =
-                textbook.university
-
-            tvBookCondition.text =
-                textbook.condition
-
-            tvBookAuthor.text =
-                "Author: ${textbook.author}"
-
-            tvBookEdition.text =
-                "Edition: ${textbook.edition}"
-
-            tvBookDescription.text =
-                textbook.description
+            tvBookTitle.text = textbook.title
+            tvBookPrice.text = "R${textbook.price}"
+            tvBookSeller.text = textbook.seller
+            tvBookLocation.text = textbook.university
+            tvBookCondition.text = textbook.condition
+            tvBookAuthor.text = "Author: ${textbook.author}"
+            tvBookEdition.text = "Edition: ${textbook.edition}"
+            tvBookDescription.text = textbook.description
 
             if (textbook.image1 != null) {
-
-                imgBookMain.setImageURI(
-                    textbook.image1
-                )
-
-                imgThumb1.setImageURI(
-                    textbook.image1
-                )
-
+                imgBookMain.setImageURI(textbook.image1)
+                imgThumb1.setImageURI(textbook.image1)
             }
 
             if (textbook.image2 != null) {
-
-                imgThumb2.setImageURI(
-                    textbook.image2
-                )
-
+                imgThumb2.setImageURI(textbook.image2)
             }
 
             if (textbook.image3 != null) {
-
-                imgThumb3.setImageURI(
-                    textbook.image3
-                )
-
+                imgThumb3.setImageURI(textbook.image3)
             }
 
             // THUMBNAIL CLICK EVENTS
 
             imgThumb1.setOnClickListener {
-
                 if (textbook.image1 != null) {
-
-                    imgBookMain.setImageURI(
-                        textbook.image1
-                    )
-
+                    imgBookMain.setImageURI(textbook.image1)
                 }
-
             }
 
             imgThumb2.setOnClickListener {
-
                 if (textbook.image2 != null) {
-
-                    imgBookMain.setImageURI(
-                        textbook.image2
-                    )
-
+                    imgBookMain.setImageURI(textbook.image2)
                 }
-
             }
 
             imgThumb3.setOnClickListener {
-
                 if (textbook.image3 != null) {
-
-                    imgBookMain.setImageURI(
-                        textbook.image3
-                    )
-
+                    imgBookMain.setImageURI(textbook.image3)
                 }
-
             }
 
         } else {
-
-            tvBookTitle.text =
-                BookData.title
-
-            tvBookPrice.text =
-                "R${BookData.price}"
-
-            tvBookSeller.text =
-                BookData.seller
-
-            tvBookLocation.text =
-                BookData.university
-
-            tvBookCondition.text =
-                BookData.condition
-
+            tvBookTitle.text = BookData.title
+            tvBookPrice.text = "R${BookData.price}"
+            tvBookSeller.text = BookData.seller
+            tvBookLocation.text = BookData.university
+            tvBookCondition.text = BookData.condition
         }
 
         // INQUIRE BUTTON
@@ -229,20 +150,16 @@ class BookDetailsActivity : AppCompatActivity() {
                 Prevents the user from
                 messaging themselves
             */
-
             if (
                 BookData.selectedTextbook != null &&
                 BookData.selectedTextbook!!.seller == UserData.name
             ) {
-
                 Toast.makeText(
                     this,
                     "You cannot inquire on your own listing",
                     Toast.LENGTH_SHORT
                 ).show()
-
                 return@setOnClickListener
-
             }
 
             /*
@@ -250,84 +167,48 @@ class BookDetailsActivity : AppCompatActivity() {
                 so the chat screen knows
                 who the conversation is with
             */
-
             if (BookData.selectedTextbook != null) {
-
-                UserData.currentChatSeller =
-                    BookData.selectedTextbook!!.seller
-
+                UserData.currentChatSeller = BookData.selectedTextbook!!.seller
             } else {
-
-                UserData.currentChatSeller =
-                    BookData.seller
-
+                UserData.currentChatSeller = BookData.seller
             }
+
             Toast.makeText(
                 this,
                 "Seller = ${UserData.currentChatSeller}",
                 Toast.LENGTH_LONG
             ).show()
-            // Opens the chat screen
 
+            // Opens the chat screen
             startActivity(
                 Intent(this, ChatActivity::class.java)
             )
-
         }
 
-        // NAVBAR
-
-        val navHome =
-            findViewById<LinearLayout>(R.id.navHome)
-
-        val navSell =
-            findViewById<LinearLayout>(R.id.navSell)
-
-        val navAccount =
-            findViewById<LinearLayout>(R.id.navAccount)
-
-        val navChat =
-            findViewById<LinearLayout>(R.id.navChat)
+        // NAVBAR (using binding)
+        val navHome = binding.navHome
+        val navSell = binding.navSell
+        val navAccount = binding.navAccount
+        val navChat = binding.navChat
 
         // HOME BUTTON
-
         navHome.setOnClickListener {
-
-            startActivity(
-                Intent(this, HomeActivity::class.java)
-            )
-
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
         // SELL BUTTON
-
         navSell.setOnClickListener {
-
-            startActivity(
-                Intent(this, SellActivity::class.java)
-            )
-
+            startActivity(Intent(this, SellActivity::class.java))
         }
 
         // PROFILE BUTTON
-
         navAccount.setOnClickListener {
-
-            startActivity(
-                Intent(this, ProfileActivity::class.java)
-            )
-
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
 
         // CHAT BUTTON
-
         navChat.setOnClickListener {
-
-            startActivity(
-                Intent(this, ChatListActivity::class.java)
-            )
-
+            startActivity(Intent(this, ChatListActivity::class.java))
         }
-
     }
 }
