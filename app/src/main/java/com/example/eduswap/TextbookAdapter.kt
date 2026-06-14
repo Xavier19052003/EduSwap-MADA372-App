@@ -31,6 +31,11 @@ class TextbookAdapter(
                 R.id.tvTitle
             )
 
+        val tvAuthor =
+            itemView.findViewById<TextView>(
+                R.id.tvAuthor
+            )
+
         val tvPrice =
             itemView.findViewById<TextView>(
                 R.id.tvPrice
@@ -82,6 +87,9 @@ class TextbookAdapter(
 
         holder.tvTitle.text =
             textbook.title
+
+        holder.tvAuthor.text =
+            textbook.author
 
         holder.tvPrice.text =
             "R${textbook.price}"

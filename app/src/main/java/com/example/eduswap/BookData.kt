@@ -66,4 +66,10 @@ object BookData {
 
     var selectedTextbook: Textbook? = null
 
+    var author = ""
+
+    var edition = ""
+
+    var description = ""
+
 }

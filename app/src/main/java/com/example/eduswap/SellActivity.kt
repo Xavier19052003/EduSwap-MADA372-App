@@ -227,6 +227,33 @@ class SellActivity : AppCompatActivity() {
             val description =
                 etDescription.text.toString()
 
+            if (author.isEmpty()) {
+
+                etAuthor.error =
+                    "Enter the author"
+
+                return@setOnClickListener
+
+            }
+
+            if (edition.isEmpty()) {
+
+                etEdition.error =
+                    "Enter the edition"
+
+                return@setOnClickListener
+
+            }
+
+            if (description.isEmpty()) {
+
+                etDescription.error =
+                    "Enter a description"
+
+                return@setOnClickListener
+
+            }
+
             // VALIDATION
 
             if (title.isEmpty()) {
