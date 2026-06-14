@@ -192,6 +192,12 @@ class ProfileActivity : AppCompatActivity() {
 
         btnRemoveListing.setOnClickListener {
 
+            TextbookRepository.textbooks.removeIf {
+
+                it.seller == UserData.name
+
+            }
+
             // Clears stored book data
 
             BookData.title = ""
