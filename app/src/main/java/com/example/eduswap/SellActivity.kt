@@ -151,6 +151,20 @@ class SellActivity : AppCompatActivity() {
             findViewById<EditText>(
                 R.id.etBookPrice
             )
+        val etAuthor =
+            findViewById<EditText>(
+                R.id.etAuthor
+            )
+
+        val etEdition =
+            findViewById<EditText>(
+                R.id.etEdition
+            )
+
+        val etDescription =
+            findViewById<EditText>(
+                R.id.etDescription
+            )
 
         // CONDITION CHECKBOXES
 
@@ -203,6 +217,15 @@ class SellActivity : AppCompatActivity() {
 
             val price =
                 etBookPrice.text.toString()
+
+            val author =
+                etAuthor.text.toString()
+
+            val edition =
+                etEdition.text.toString()
+
+            val description =
+                etDescription.text.toString()
 
             // VALIDATION
 
@@ -272,6 +295,9 @@ class SellActivity : AppCompatActivity() {
             val textbook =
                 Textbook(
                     title = title,
+                    author = author,
+                    edition = edition,
+                    description = description,
                     price = price,
                     seller = UserData.name,
                     university = UserData.university,

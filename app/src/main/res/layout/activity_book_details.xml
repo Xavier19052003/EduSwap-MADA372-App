@@ -131,6 +131,29 @@
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tvBookAuthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Author"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBookEdition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edition"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBookDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Description"
+                    android:textSize="16sp" />
+
                 <!-- LOCATION SECTION -->
 
                 <LinearLayout

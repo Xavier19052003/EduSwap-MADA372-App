@@ -85,6 +85,21 @@ class BookDetailsActivity : AppCompatActivity() {
         val imgThumb3 =
             findViewById<ImageView>(R.id.imgThumb3)
 
+        val tvBookAuthor =
+            findViewById<TextView>(
+                R.id.tvBookAuthor
+            )
+
+        val tvBookEdition =
+            findViewById<TextView>(
+                R.id.tvBookEdition
+            )
+
+        val tvBookDescription =
+            findViewById<TextView>(
+                R.id.tvBookDescription
+            )
+
         /*
             Checks whether the user opened:
             - the placeholder mock book
@@ -111,6 +126,15 @@ class BookDetailsActivity : AppCompatActivity() {
 
             tvBookCondition.text =
                 textbook.condition
+
+            tvBookAuthor.text =
+                "Author: ${textbook.author}"
+
+            tvBookEdition.text =
+                "Edition: ${textbook.edition}"
+
+            tvBookDescription.text =
+                textbook.description
 
             if (textbook.image1 != null) {
 
