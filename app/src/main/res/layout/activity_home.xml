@@ -139,77 +139,13 @@
 
             <!-- MOCK PLACEHOLDER LISTING -->
 
-            <LinearLayout
-                android:id="@+id/marketplaceCard"
+            <!-- RECYCLERVIEW FOR TEXTBOOK LISTINGS -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBooks"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#F7D73B"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <!-- BOOK IMAGE -->
-
-                <ImageView
-                    android:id="@+id/imgMarketplaceBook"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/book_placeholder" />
-
-                <!-- BOOK INFORMATION -->
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <!-- BOOK TITLE -->
-
-                    <TextView
-                        android:id="@+id/tvMarketplaceTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Lord of the Rings"
-                        android:textColor="#0D2E73"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <!-- BOOK PRICE -->
-
-                    <TextView
-                        android:id="@+id/tvMarketplacePrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="R200"
-                        android:textColor="#D60000"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <!-- SELLER -->
-
-                    <TextView
-                        android:id="@+id/tvMarketplaceSeller"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Seller: Durell"
-                        android:textSize="20sp" />
-
-                    <!-- UNIVERSITY -->
-
-                    <TextView
-                        android:id="@+id/tvMarketplaceUniversity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="University: STADIO"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"/>
 
         </LinearLayout>
 

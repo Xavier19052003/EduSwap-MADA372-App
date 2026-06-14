@@ -92,28 +92,39 @@ class BookDetailsActivity : AppCompatActivity() {
             - a real uploaded listing
         */
 
-        if (BookData.isMockBook) {
+        if (BookData.selectedTextbook != null) {
 
-            // MOCK BOOK DATA
+            val textbook =
+                BookData.selectedTextbook!!
 
             tvBookTitle.text =
-                "Lord of the Rings"
+                textbook.title
 
             tvBookPrice.text =
-                "R200"
+                "R${textbook.price}"
 
             tvBookSeller.text =
-                "Durell"
+                textbook.seller
 
             tvBookLocation.text =
-                "STADIO University"
+                textbook.university
 
             tvBookCondition.text =
-                "Used"
+                textbook.condition
+
+            if (textbook.image1 != null) {
+
+                imgBookMain.setImageURI(
+                    textbook.image1
+                )
+
+                imgThumb1.setImageURI(
+                    textbook.image1
+                )
+
+            }
 
         } else {
-
-            // USER BOOK DATA
 
             tvBookTitle.text =
                 BookData.title
@@ -130,82 +141,6 @@ class BookDetailsActivity : AppCompatActivity() {
             tvBookCondition.text =
                 BookData.condition
 
-            // LOAD MAIN IMAGE
-
-            if (BookData.image1 != null) {
-
-                imgBookMain.setImageURI(
-                    BookData.image1
-                )
-
-                imgThumb1.setImageURI(
-                    BookData.image1
-                )
-
-            }
-
-            // LOAD SECOND IMAGE
-
-            if (BookData.image2 != null) {
-
-                imgThumb2.setImageURI(
-                    BookData.image2
-                )
-
-            }
-
-            // LOAD THIRD IMAGE
-
-            if (BookData.image3 != null) {
-
-                imgThumb3.setImageURI(
-                    BookData.image3
-                )
-
-            }
-
-            /*
-                Allows the user to switch
-                the main image by clicking
-                the thumbnails
-            */
-
-            imgThumb1.setOnClickListener {
-
-                if (BookData.image1 != null) {
-
-                    imgBookMain.setImageURI(
-                        BookData.image1
-                    )
-
-                }
-
-            }
-
-            imgThumb2.setOnClickListener {
-
-                if (BookData.image2 != null) {
-
-                    imgBookMain.setImageURI(
-                        BookData.image2
-                    )
-
-                }
-
-            }
-
-            imgThumb3.setOnClickListener {
-
-                if (BookData.image3 != null) {
-
-                    imgBookMain.setImageURI(
-                        BookData.image3
-                    )
-
-                }
-
-            }
-
         }
 
         // INQUIRE BUTTON
@@ -217,7 +152,10 @@ class BookDetailsActivity : AppCompatActivity() {
                 messaging themselves
             */
 
-            if (BookData.seller == UserData.name) {
+            if (
+                BookData.selectedTextbook != null &&
+                BookData.selectedTextbook!!.seller == UserData.name
+            ) {
 
                 Toast.makeText(
                     this,
@@ -235,10 +173,10 @@ class BookDetailsActivity : AppCompatActivity() {
                 who the conversation is with
             */
 
-            if (BookData.isMockBook) {
+            if (BookData.selectedTextbook != null) {
 
                 UserData.currentChatSeller =
-                    "Durell"
+                    BookData.selectedTextbook!!.seller
 
             } else {
 
@@ -246,7 +184,11 @@ class BookDetailsActivity : AppCompatActivity() {
                     BookData.seller
 
             }
-
+            Toast.makeText(
+                this,
+                "Seller = ${UserData.currentChatSeller}",
+                Toast.LENGTH_LONG
+            ).show()
             // Opens the chat screen
 
             startActivity(

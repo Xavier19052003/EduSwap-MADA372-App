@@ -64,4 +64,6 @@ object BookData {
 
     var condition = ""
 
+    var selectedTextbook: Textbook? = null
+
 }

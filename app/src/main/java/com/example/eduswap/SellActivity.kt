@@ -267,6 +267,24 @@ class SellActivity : AppCompatActivity() {
 
             }
 
+            // CREATE NEW TEXTBOOK OBJECT
+
+            val textbook =
+                Textbook(
+                    title = title,
+                    price = price,
+                    seller = UserData.name,
+                    university = UserData.university,
+                    condition = BookData.condition,
+                    image1 = BookData.image1
+                )
+
+            // ADD TO REPOSITORY
+
+            TextbookRepository.textbooks.add(
+                textbook
+            )
+
             // Success message
 
             Toast.makeText(

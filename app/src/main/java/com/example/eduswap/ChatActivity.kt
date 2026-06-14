@@ -64,6 +64,47 @@ class ChatActivity : AppCompatActivity() {
                 R.id.chatContainer
             )
 
+        // LOAD PREVIOUS MESSAGES
+
+        for (savedMessage in ChatData.messages) {
+
+            val messageText =
+                TextView(this)
+
+            messageText.text =
+                savedMessage
+
+            messageText.textSize = 16f
+
+            messageText.setPadding(
+                24,
+                16,
+                24,
+                16
+            )
+
+            messageText.setBackgroundColor(
+                Color.parseColor("#D4EDDA")
+            )
+
+            val params =
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+
+            params.topMargin = 16
+            params.marginStart = 120
+
+            messageText.layoutParams =
+                params
+
+            chatContainer.addView(
+                messageText
+            )
+
+        }
+
         // SEND MESSAGE
 
         btnSend.setOnClickListener {
@@ -127,6 +168,9 @@ class ChatActivity : AppCompatActivity() {
 
             chatContainer.addView(
                 messageText
+            )
+            ChatData.messages.add(
+                message
             )
 
             // Clears text input
